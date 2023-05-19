@@ -2,7 +2,7 @@ package org.apache.cordova.plugin;
 
 import android.content.Context;
 import android.os.Build;
-import android.telephony.CellSignalStrengthGsm;
+import android.telephony.CellSignalStrength;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
