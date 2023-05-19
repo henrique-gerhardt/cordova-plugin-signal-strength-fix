@@ -1,14 +1,15 @@
 package org.apache.cordova.plugin;
 
 import android.content.Context;
-
+import android.os.Build;
+import android.telephony.CellSignalStrengthGsm;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SignalStrength extends CordovaPlugin {
 
