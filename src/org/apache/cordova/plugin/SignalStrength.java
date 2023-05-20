@@ -28,14 +28,17 @@ import org.json.JSONException;
 public class SignalStrength extends CordovaPlugin {
 
         private TelephonyManager tm;
-        private int asulevel = -1;
         private int dbm = -1;
+        public int asulevel = -1;
+
+        protected final static String[] permissions = { Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION };
+        public static final int CONTINUE = 1;
+        public static final int PERMISSION_DENIED_ERROR = 20;
 
         @Override
         public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
                 if (action.equals("dbm")) {
-                        ssListener = new SignalStrengthStateListener();
                         tm = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
                         
                         if(!PermissionHelper.hasPermission(this, Manifest.permission.READ_PHONE_STATE)) {
@@ -69,16 +72,16 @@ public class SignalStrength extends CordovaPlugin {
                 if (cellInfoList != null) {
                         for (CellInfo cellInfo : cellInfoList) {
                                 if (cellInfo instanceof CellInfoLte) {
-                                        CellSignalStrengthLte cellSignalStrengthLte = cellInfo.getCellSignalStrength();
+                                        CellSignalStrengthLte cellSignalStrengthLte = ((CellInfoLte) cellInfo).getCellSignalStrength();
                                         return cellSignalStrengthLte.getDbm();
                                 } else if (cellInfo instanceof CellInfoWcdma) {
-                                        CellSignalStrengthWcdma cellSignalStrengthWcdma = cellInfo.getCellSignalStrength();
+                                        CellSignalStrengthWcdma cellSignalStrengthWcdma = ((CellInfoWcdma) cellInfo).getCellSignalStrength();
                                         return cellSignalStrengthWcdma.getDbm();
                                 } else if (cellInfo instanceof CellInfoGsm) {
-                                        CellSignalStrengthGsm cellSignalStrengthGsm = cellInfo.getCellSignalStrength();
+                                        CellSignalStrengthGsm cellSignalStrengthGsm = ((CellInfoGsm) cellInfo).getCellSignalStrength();
                                         return cellSignalStrengthGsm.getDbm();
                                 } else if (cellInfo instanceof CellInfoCdma) {
-                                        CellSignalStrengthCdma cellSignalStrengthCdma = cellInfo.getCellSignalStrength();
+                                        CellSignalStrengthCdma cellSignalStrengthCdma = ((CellInfoCdma) cellInfo).getCellSignalStrength();
                                         return cellSignalStrengthCdma.getDbm();
                                 }
                         }
@@ -106,12 +109,12 @@ public class SignalStrength extends CordovaPlugin {
                         }
                 }
         }
-        
+
         public class SignalStrengthStateListener extends PhoneStateListener {
                 @Override
                 public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
                         super.onSignalStrengthsChanged(signalStrength);
-                        this.asulevel = signalStrength.getGsmSignalStrength();
+                        asulevel = signalStrength.getGsmSignalStrength();
                 }
         }
 }
