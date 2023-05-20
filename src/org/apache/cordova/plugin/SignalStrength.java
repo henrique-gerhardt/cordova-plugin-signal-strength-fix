@@ -95,7 +95,7 @@ public class SignalStrength extends CordovaPlugin {
                                         }
                                 }
                                 this.tm.listen(sssListener, PhoneStateListener.LISTEN_NONE);
-                                
+
                                 if(this.asulevel == -1) {
                                         return -1;
                                 }
@@ -106,7 +106,7 @@ public class SignalStrength extends CordovaPlugin {
                         }
                 }
         }
-
+        
         public class SignalStrengthStateListener extends PhoneStateListener {
                 @Override
                 public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
