@@ -14,6 +14,10 @@
         <param name="onload" value="true" />
       </feature>
     </config-file>
+     <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.READ_PRECISE_PHONE_STATE" />
+      </config-file>
     <source-file src="src/org/apache/cordova/plugin/SignalStrength.java" target-dir="src/org/apache/cordova/SignalStrength" />
   </platform>
 </plugin>
