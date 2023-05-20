@@ -99,7 +99,7 @@ public class SignalStrength extends CordovaPlugin {
                                         this.dbm = getDbm();
                                 } else if (this.currentAction.equals("asu")) {
                                         this.asulevel = getAsu();
-                                } else if (action.equals("type")) {
+                                } else if (this.currentAction.equals("type")) {
                                         this.type = getType();
                                 }
                                 break;
