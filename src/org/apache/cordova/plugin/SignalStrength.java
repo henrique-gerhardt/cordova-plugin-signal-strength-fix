@@ -203,7 +203,7 @@ public class SignalStrength extends CordovaPlugin {
                                 if (cellInfo instanceof CellInfoLte) {
                                         return "LTE";
                                 } else if (cellInfo instanceof CellInfoWcdma) {
-                                        return "WCDMA"
+                                        return "WCDMA";
                                 } else if (cellInfo instanceof CellInfoGsm) {
                                         return "GSM";
                                 } else if (cellInfo instanceof CellInfoCdma) {
