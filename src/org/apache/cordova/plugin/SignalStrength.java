@@ -34,11 +34,13 @@ public class SignalStrength extends CordovaPlugin {
         protected final static String[] permissions = { Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION };
         public static final int CONTINUE = 1;
         public static final int PERMISSION_DENIED_ERROR = 20;
+        private CallbackContext callbackContext;
 
         @Override
         public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
                 if (action.equals("dbm")) {
+                        this.callbackContext = callbackContext;
                         tm = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
                         
                         if(!PermissionHelper.hasPermission(this, Manifest.permission.READ_PHONE_STATE)) {
