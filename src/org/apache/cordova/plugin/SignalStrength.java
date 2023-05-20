@@ -85,6 +85,8 @@ public class SignalStrength extends CordovaPlugin {
                                 } else if (cellInfo instanceof CellInfoCdma) {
                                         CellSignalStrengthCdma cellSignalStrengthCdma = ((CellInfoCdma) cellInfo).getCellSignalStrength();
                                         return cellSignalStrengthCdma.getDbm();
+                                } else {
+                                        return -1;
                                 }
                         }
                 } else {
@@ -110,6 +112,8 @@ public class SignalStrength extends CordovaPlugin {
                                 throw new IllegalArgumentException(e);
                         }
                 }
+
+                return -1;
         }
 
         public class SignalStrengthStateListener extends PhoneStateListener {
